@@ -1,0 +1,30 @@
+/**
+ * Plugin Name: Tooltip CK
+ * Plugin URI: http://www.wordpressck.com
+ * Description: Tooltip CK allows you to put some nice tooltip effects into your content.
+ * Version: 1.0.0
+ * Author: Cédric KEIFLIN
+ * Author URI: http://www.wordpressck.com
+ * License: GPL2
+ */
+
+span.infotip {
+	z-index: 5000;
+	text-decoration: underline;
+}
+
+span.infotip span.tooltipck_tooltip {
+	position: absolute;
+	z-index : 60000;
+    display : none;
+}
+
+span.infotip:hover span.tooltipck_tooltip {
+
+}
+
+span.infotip span.tooltipck_inner {
+	display : block;
+}
+
+
