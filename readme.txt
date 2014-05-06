@@ -12,7 +12,7 @@ Tooltip CK allows you to put some nice tooltip effects into your content.
 
 <p>Tooltip CK</p><p>Example of use :</p><p>{tooltip}Text to hover{end-texte}a friendly little boy{end-tooltip}</p>
 
-Get more informations and see the demo on http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck
+<p>Get more informations and see the demo on http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck</p>
 
 == Installation ==
 
