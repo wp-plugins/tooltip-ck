@@ -39,12 +39,13 @@ class Tooltipck_Settings extends Tooltipck {
 		wp_enqueue_script('postbox');
 		wp_enqueue_script('tooltipck_adminscript', $this->pluginurl . '/assets/tooltipck_admin.js', array('jquery', 'jquery-ui-button', 'wp-color-picker'));
 		?>
-		<style>
+		<style type="text/css">
 		#ckwrapper label { float: left; width: 180px; }
 		#ckwrapper input { max-width: 100%; }
 		#ckwrapper .ckheading { color: #2EA2CC; font-weight: bold; }
 		#ckwrapper span { display: inline-block; }
 		#ckwrapper .wp-color-result { vertical-align: middle; }
+		.settings-error { clear: both; }
 		</style>
 	<?php }
 
