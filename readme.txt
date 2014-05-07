@@ -3,16 +3,16 @@ Contributors: ced1870
 Tags: tooltip
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 
 Tooltip CK allows you to put some nice tooltip effects into your content.
 
 == Description ==
 
-<p>Tooltip CK</p><p>Example of use (to write in your editor) :</p><p><i>{tooltip}Text to hover{end-texte}a friendly little boy{end-tooltip}<i></p>
-<p>You can check more informations and the demo on <a href="http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck">http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck</a></p>
+<p>Tooltip CK</p><p>Example of use :</p><p>{tooltip}Text to hover{end-texte}a friendly little boy{end-tooltip}</p>
 
+<p>Get more informations and see the demo on http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck</p>
 
 == Installation ==
 
@@ -30,6 +30,9 @@ Tooltip CK allows you to put some nice tooltip effects into your content.
 2. How to create a tooltip in your Wordpress editor
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix html issue in the settings page
 
 = 1.0.0 =
 * First issue

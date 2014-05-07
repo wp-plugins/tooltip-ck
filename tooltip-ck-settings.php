@@ -39,12 +39,13 @@ class Tooltipck_Settings extends Tooltipck {
 		wp_enqueue_script('postbox');
 		wp_enqueue_script('tooltipck_adminscript', $this->pluginurl . '/assets/tooltipck_admin.js', array('jquery', 'jquery-ui-button', 'wp-color-picker'));
 		?>
-		<style>
+		<style type="text/css">
 		#ckwrapper label { float: left; width: 180px; }
 		#ckwrapper input { max-width: 100%; }
 		#ckwrapper .ckheading { color: #2EA2CC; font-weight: bold; }
 		#ckwrapper span { display: inline-block; }
 		#ckwrapper .wp-color-result { vertical-align: middle; }
+		.settings-error { clear: both; }
 		</style>
 	<?php }
 
@@ -83,76 +84,76 @@ class Tooltipck_Settings extends Tooltipck {
 
 	function create_metabox_styles() {
 		?>
-		<p class="ckheading"><?php _e('Colors ans Styles') ?></p>
-		<p>
+		<div class="ckheading"><?php _e('Colors ans Styles') ?></div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'bgcolor1' ); ?>"><?php _e( 'Background Color'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/color.png" />
 			<?php echo $this->get_field('color', $this->get_field_name( 'bgcolor1' ), $this->get_field_value( 'bgcolor1')) ?>
 			<?php echo $this->get_field('color', $this->get_field_name( 'bgcolor2' ), $this->get_field_value( 'bgcolor2')) ?>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'opacity' ); ?>"><?php _e( 'Opacity'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/layers.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'opacity' ), $this->get_field_value( 'opacity')) ?>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'textcolor' ); ?>"><?php _e( 'Text Color'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/color.png" />
 			<?php echo $this->get_field('color', $this->get_field_name( 'textcolor' ), $this->get_field_value( 'textcolor')) ?>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'roundedcorners' ); ?>"><?php _e( 'Border radius'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/border_radius_tl.png" />
 			<span><?php _e( 'Top left'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'roundedcornerstl' ), $this->get_field_value( 'roundedcornerstl')) ?></span>
 			<span><?php _e( 'Top right'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'roundedcornerstr' ), $this->get_field_value( 'roundedcornerstr')) ?></span>
 			<span><?php _e( 'Bottom right'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'roundedcornersbr' ), $this->get_field_value( 'roundedcornersbr')) ?></span>
 			<span><?php _e( 'Bottom left'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'roundedcornersbl' ), $this->get_field_value( 'roundedcornersbl')) ?></span>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'shadowcolor' ); ?>"><?php _e( 'Shadow'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/shadow_blur.png" />
-			</span><span><?php echo $this->get_field('color', $this->get_field_name( 'shadowcolor' ), $this->get_field_value( 'shadowcolor')) ?></span>
+			<span><?php echo $this->get_field('color', $this->get_field_name( 'shadowcolor' ), $this->get_field_value( 'shadowcolor')) ?></span>
 			<span><?php _e( 'Blur'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'shadowblur' ), $this->get_field_value( 'shadowblur')) ?></span>
 			<span><?php _e( 'Spread'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'shadowspread' ), $this->get_field_value( 'shadowspread')) ?></span>
 			<span><?php _e( 'Offset X'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'shadowoffsetx' ), $this->get_field_value( 'shadowoffsetx')) ?></span>
 			<span><?php _e( 'Offset Y'); ?></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'shadowoffsety' ), $this->get_field_value( 'shadowoffsety')) ?></span>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'bordercolor' ); ?>"><?php _e( 'Border'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/shape_square.png" />
-			</span><span><?php echo $this->get_field('color', $this->get_field_name( 'bordercolor' ), $this->get_field_value( 'bordercolor')) ?></span>
+			<span><?php echo $this->get_field('color', $this->get_field_name( 'bordercolor' ), $this->get_field_value( 'bordercolor')) ?></span>
 			<span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'borderwidth' ), $this->get_field_value( 'borderwidth')) ?></span> px
-		</p>
-		<p class="ckheading"><?php _e('Dimensions and Position') ?></p>
-		<p>
+		</div>
+		<div class="ckheading"><?php _e('Dimensions and Position') ?></div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'stylewidth' ); ?>"><?php _e( 'Tooltip width'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/width.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'stylewidth' ), $this->get_field_value( 'stylewidth')) ?>px
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'tipoffsetx' ); ?>"><?php _e( 'Tooltip Offset X'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/offsetx.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'tipoffsetx' ), $this->get_field_value( 'tipoffsetx')) ?>px
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'tipoffsety' ); ?>"><?php _e( 'Tooltip Offset Y'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/offsety.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'tipoffsety' ), $this->get_field_value( 'tipoffsety')) ?>px
-		</p>
+		</div>
 	<?php }
 
 	function create_metabox_effects() {
 		?>
-		<p>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'fxduration' ); ?>"><?php _e( 'Tooltip opening duration'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/hourglass.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'fxduration' ), $this->get_field_value( 'fxduration')) ?>ms
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="<?php echo $this->get_field_name( 'dureebulle' ); ?>"><?php _e( 'Tooltip before close time'); ?></label>
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/hourglass.png" />
 			<?php echo $this->get_field('text', $this->get_field_name( 'dureebulle' ), $this->get_field_value( 'dureebulle')) ?>ms
-		</p>
+		</div>
 	<?php }
 
 	function render_options() {
