@@ -160,7 +160,7 @@ class Tooltipck_Settings extends Tooltipck {
 	function render_options() {
 	?>
 	<div id="ckwrapper" class="wrap">
-		<img src="<?php echo $this->pluginurl ?>/images/logo_tooltipck_64.png" style="float:left; margin: 15px 5px;" />
+		<img src="<?php echo $this->pluginurl ?>/images/logo_tooltipck_64.png" style="float:left; margin: 0px 5px 5px 0;" />
 		<h2><?php esc_attr_e('Tooltip CK Settings');?></h2>
 		<?php $this->show_pro_message_settings_page(); ?>
 		<form method="post" action="options.php">
