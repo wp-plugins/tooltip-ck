@@ -4,18 +4,19 @@ defined('ABSPATH') or die;
 if (!class_exists("CKfields")) :
 class CKfields {
 
-	private $name, $id, $value, $classname, $optionsgroup, $isfiles;
+	private $name, $id, $value, $classname, $optionsgroup, $isfiles, $attribs;
 
 	function __construct() {
 	}
 
-	public function get($type, $name, $value, $classname = '', $optionsgroup = '', $isfiles = false) {
+	public function get($type, $name, $value, $classname = '', $optionsgroup = '', $isfiles = false, $attribs = '') {
 		$this->name = $name;
 		$this->id = trim(preg_replace('#\W#', '_', $name), '_');
 		$this->value = $value;
 		$this->optionsgroup = $optionsgroup;
 		$this->classname = $classname;
 		$this->isfiles = $isfiles;
+		$this->attribs = $attribs;
 		$function = 'get'.ucfirst($type);
 		return $this->$function();
 	}
@@ -35,7 +36,7 @@ class CKfields {
 
 	private function getSelect() {
 		$class = $this->classname ? ' class="'.$this->classname.'"' : '';
-		$html = '<select id="'.$this->id.'" name="'.$this->name.'" value="'.$this->value.'"'.$class.' >';
+		$html = '<select id="'.$this->id.'" name="'.$this->name.'" value="'.$this->value.'"'.$class.' '.$this->attribs.' >';
 		$html .= $this->getOptions();
 		$html .= '</select>';
 		return $html;

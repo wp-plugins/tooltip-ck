@@ -1,26 +1,3 @@
-// window.addEvent('domready', function() {
-
-    // jQueryjQuery('.radioClass').each(function(el2){el2.setStyle('opacity','0'); });
-    
-    // var monimage = jQueryjQuery('.boutonRadio');
-    // monimage.each(function(el) {
-        // el.addEvent('click',function(){
-			// var boutoncontainer = el.getParent(); 
-            // boutoncontainer.getElements('.boutonRadio').removeClass('coche');
-            // el.addClass('coche');
-            // var moninput = el.getFirst();
-            
-
-            // var identifier = el.getProperty('identifier');
-            // if (jQuery(identifier)) jQuery(identifier).value = moninput.value;
-            // boutoncontainer.getElements('.radioClass').each(function(el2){
-				// el2.removeAttribute("checked","checked"); 
-			// });
-                // moninput.setAttribute("checked","checked");
-            // });
-        // });
-    // });
-
 function makeckradio2js() {
 	jQuery('.radioClass').css('opacity','0');
 	jQuery('.boutonRadio').each(function(i, el) {
@@ -33,9 +10,10 @@ function makeckradio2js() {
 			// var identifier = el.attr('identifier');
 			jQuery('input[type=hidden]', boutoncontainer).val(moninput.val());
 			jQuery('.radioClass',boutoncontainer).each(function(j, el2){
-				jQuery(el2).removeAttr("checked","checked"); 
+				jQuery(el2).removeAttr("checked","checked");
 			});
 			moninput.attr("checked","checked");
+			ckajax_render_admin_css();
 		});
 	});
 }

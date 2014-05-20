@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') or die;
 
+// Make sure we don't expose any info if called directly
 if (!function_exists('is_admin')) {
 	header('Status: 403 Forbidden');
 	header('HTTP/1.1 403 Forbidden');
@@ -15,8 +16,8 @@ class Tooltipck_Settings extends Tooltipck {
 	function __construct() {
 		parent::__construct();
 
-		add_action('admin_init', array($this,'admin_init'), 20);
-		add_action('admin_menu', array($this, 'admin_settings_menu'), 20);
+		add_action( 'admin_init', array($this, 'admin_init'), 20 );
+		add_action( 'admin_menu', array($this, 'admin_settings_menu'), 20 );
 	}
 
 	function admin_settings_menu() {
@@ -55,7 +56,7 @@ class Tooltipck_Settings extends Tooltipck {
 
 	function get_field($type, $name, $value, $classname = '', $optionsgroup = '') {
 		if (!class_exists('CKfields'))
-			require($this->plugindir . '/class-ckfields.php');
+			require($this->plugindir . '/cklibrary/class-ckfields.php');
 		$ckfields = new CKfields();
 		return $ckfields->get($type, $name, $value, $classname, $optionsgroup);
 	}
@@ -163,9 +164,9 @@ class Tooltipck_Settings extends Tooltipck {
 		<h2><?php esc_attr_e('Tooltip CK Settings');?></h2>
 		<?php $this->show_pro_message_settings_page(); ?>
 		<form method="post" action="options.php">
-			<p>
+			<div style="clear:both;">
 				<input type="submit" class="button button-primary" name="save_options" value="<?php esc_attr_e('Save Settings'); ?>" />
-			</p>
+			</div>
 			<div class="metabox-holder">
 				<div class="postbox-container" style="width: 99%;">
 				<?php 
@@ -174,9 +175,9 @@ class Tooltipck_Settings extends Tooltipck {
 				?>
 				</div>
 			</div>
-			<p>
+			<div>
 				<input type="submit" class="button button-primary" name="save_options" value="<?php esc_attr_e('Save Settings'); ?>" />
-			</p>
+			</div>
 		</form>
 		<?php $this->show_pro_message_settings_page(); ?>
 	</div>
@@ -188,6 +189,15 @@ class Tooltipck_Settings extends Tooltipck {
 		});
 		//]]>
 	</script>
+	<?php }
+
+	function show_pro_message_settings_page() { ?>
+		<div class="ckcheckproversion">
+			<?php if (! $this->ispro ) : ?>
+				<img class="iconck" src="<?php echo $this->pluginurl ?>/images/star.png" />
+				<a target="_blank" href="<?php echo $this->prourl ?>"><?php _e('Get the PRO Version'); ?></a>
+			<?php endif; ?>
+		</div>
 	<?php }
 }
 endif;

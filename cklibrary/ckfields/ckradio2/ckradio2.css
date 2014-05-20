@@ -13,7 +13,7 @@ fieldset.ckradio2 {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	padding: 0;
-	margin-top: 5px !important;
+	/*margin-top: 5px !important;*/
 	line-height: 15px;
 	display: inline-block;
 }

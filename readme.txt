@@ -3,7 +3,7 @@ Contributors: ced1870
 Tags: tooltip
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 
 Tooltip CK allows you to put some nice tooltip effects into your content.
@@ -30,6 +30,9 @@ Tooltip CK allows you to put some nice tooltip effects into your content.
 2. How to create a tooltip in your Wordpress editor
 
 == Changelog ==
+
+= 1.0.2 =
+* Restructure folders and files for a better organization
 
 = 1.0.1 =
 * Fix html issue in the settings page
