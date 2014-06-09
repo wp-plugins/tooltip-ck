@@ -1,10 +1,12 @@
 <?php
 defined('ABSPATH') or die;
 
-if (!class_exists("CKfields")) :
-class CKfields {
+if (!class_exists("Tooltipck_CKfields")) :
+class Tooltipck_CKfields {
 
 	private $name, $id, $value, $classname, $optionsgroup, $isfiles, $attribs;
+	
+	public $pluginurl;
 
 	function __construct() {
 	}
@@ -22,7 +24,7 @@ class CKfields {
 	}
 
 	private function getColor() {
-		wp_enqueue_script( 'ckcolor', $this->pluginurl . '/ckfields/ckcolor/ckcolor.js', array('jquery', 'jquery-ui-button', 'wp-color-picker') );
+		wp_enqueue_script( 'ckcolor', $this->pluginurl . '/cklibrary/ckfields/ckcolor/ckcolor.js', array('jquery', 'jquery-ui-button', 'wp-color-picker') );
 		$class = $this->classname ? ' class="ck-color-field '.$this->classname.'"' : ' class="ck-color-field"';
 		$html = '<input type="text" id="'.$this->id.'" name="'.$this->name.'" value="'.$this->value.'"'.$class.' data-default-color="'.$this->value.'" />';
 		return $html;
@@ -72,8 +74,8 @@ class CKfields {
 	}
 	
 	private function getRadio() {
-		wp_enqueue_style( 'ckradio2', plugins_url( '' , __FILE__ ) . '/ckfields/ckradio2/ckradio2.css' );
-		wp_enqueue_script( 'ckradio2', plugins_url( '' , __FILE__ ) . '/ckfields/ckradio2/ckradio2.js', array('jquery') );
+		wp_enqueue_style( 'ckradio2', $this->pluginurl . '/cklibrary/ckfields/ckradio2/ckradio2.css' );
+		wp_enqueue_script( 'ckradio2', $this->pluginurl . '/cklibrary/ckfields/ckradio2/ckradio2.js', array('jquery') );
 		if (!is_array($this->optionsgroup)) {
 			$this->getArrayFromOptions();
 		}
@@ -90,7 +92,7 @@ class CKfields {
 		// Build the radio field output.
 		foreach ($options as $value => $name) {
 		// var_dump($i);var_dump($option);
-			if (stristr($name,"img:")) $name = '<img src="' . plugins_url( '' , __FILE__ ) . '/images/' . str_replace("img:","",$name) . '" style="margin:0; float:none;" />';
+			if (stristr($name,"img:")) $name = '<img src="' . str_replace("img:","",$name) . '" style="margin:0; float:none;" />';
 			// Initialize some option attributes.
 			$checked = ((string) $value == (string) $this->value) ? ' checked="checked"' : '';
 			$checkedclass = ((string) $value == (string) $this->value) ? ' coche' : '';
@@ -115,6 +117,16 @@ class CKfields {
 		$html[] = '</fieldset>';
 
 		return implode($html);
+	}
+	
+	private function getMedia() {
+		wp_enqueue_media();
+		wp_enqueue_script( 'ckmedia', $this->pluginurl . '/cklibrary/ckfields/ckmedia/ckmedia.js', array('jquery') );
+		$class = $this->classname ? ' class="'.$this->classname.'"' : '';
+		$html = '<input type="text" id="'.$this->id.'" name="'.$this->name.'" value="'.$this->value.'"'.$class.' />';
+		$html .= '<a class="button button-secondary" onclick="open_media_managerck(this, \'' . get_site_url() . '/\');">'. __('Select') .'</a>';
+		
+		return $html;
 	}
 }
 endif;

@@ -45,7 +45,7 @@ class Tooltipck_Settings extends Tooltipck {
 		#ckwrapper input { max-width: 100%; }
 		#ckwrapper .ckheading { color: #2EA2CC; font-weight: bold; }
 		#ckwrapper span { display: inline-block; }
-		#ckwrapper .wp-color-result { vertical-align: middle; }
+		#ckwrapper .wp-color-result, #ckwrapper img, #ckwrapper fieldset { vertical-align: middle; }
 		.settings-error { clear: both; }
 		</style>
 	<?php }
@@ -55,9 +55,10 @@ class Tooltipck_Settings extends Tooltipck {
 	}
 
 	function get_field($type, $name, $value, $classname = '', $optionsgroup = '') {
-		if (!class_exists('CKfields'))
+		if (!class_exists('Tooltipck_CKfields'))
 			require($this->plugindir . '/cklibrary/class-ckfields.php');
-		$ckfields = new CKfields();
+		$ckfields = new Tooltipck_CKfields();
+		$ckfields->pluginurl = $this->pluginurl;
 		return $ckfields->get($type, $name, $value, $classname, $optionsgroup);
 	}
 
@@ -91,6 +92,21 @@ class Tooltipck_Settings extends Tooltipck {
 			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/color.png" />
 			<?php echo $this->get_field('color', $this->get_field_name( 'bgcolor1' ), $this->get_field_value( 'bgcolor1')) ?>
 			<?php echo $this->get_field('color', $this->get_field_name( 'bgcolor2' ), $this->get_field_value( 'bgcolor2')) ?>
+		</div>
+		<div>
+			<label for="<?php echo $this->get_field_name( 'bgimage' ); ?>"><?php _e( 'Background Image'); ?></label>
+			<img class="iconck" src="<?php echo $this->pluginurl ?>/images/image.png" />
+			<?php echo $this->get_field('media', $this->get_field_name( 'bgimage' ), $this->get_field_value( 'bgimage')) ?>
+			<span><img class="iconck" src="<?php echo $this->pluginurl ?>/images/offsetx.png" /></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'bgpositionx' ), $this->get_field_value( 'bgpositionx')) ?></span>
+			<span><img class="iconck" src="<?php echo $this->pluginurl ?>/images/offsety.png" /></span><span style="width:30px;"><?php echo $this->get_field('text', $this->get_field_name( 'bgpositiony' ), $this->get_field_value( 'bgpositiony')) ?></span>
+			<?php $options_bgrepeat = array(
+				'repeat' =>'img:'.$this->pluginurl.'/images/bg_repeat.png'
+				, 'repeat-x'=>'img:'.$this->pluginurl.'/images/bg_repeat-x.png'
+				, 'repeat-y'=>'img:'.$this->pluginurl.'/images/bg_repeat-y.png'
+				, 'no-repeat'=>'img:'.$this->pluginurl.'/images/bg_no-repeat.png'
+				);
+			?>
+				<span><?php echo $this->get_field('radio', $this->get_field_name( 'bgimagerepeat' ), $this->get_field_value( 'bgimagerepeat'), '', $options_bgrepeat) ?></span>
 		</div>
 		<div>
 			<label for="<?php echo $this->get_field_name( 'opacity' ); ?>"><?php _e( 'Opacity'); ?></label>

@@ -15,6 +15,7 @@ class Tooltipck_Front extends Tooltipck {
 		parent::__construct();
 
 		add_action('wp_head', array( $this, 'load_assets'));
+		add_action('init', array( $this, 'load_assets_files'));
 		add_filter('the_content',  array( $this, 'search_key'));
 	}
 
@@ -30,7 +31,7 @@ class Tooltipck_Front extends Tooltipck {
 	}
 
 	function load_assets() {
-		$this->load_assets_files();
+		// $this->load_assets_files();
 		
 		$fxduration = $this->get_option('fxduration');
 		$dureebulle = $this->get_option('dureebulle');
@@ -38,8 +39,8 @@ class Tooltipck_Front extends Tooltipck {
 		$fxtransition = 'linear';
 		?>
 		<script type="text/javascript">
-		jQuery(document).ready(function($){
-			$(this).Tooltipck({ 
+		jQuery(document).ready(function(){
+			jQuery(this).Tooltipck({ 
 				fxtransition: '<?php echo $fxtransition?>', 
 				fxduration: <?php echo $fxduration ?>, 
 				dureebulle: <?php echo $dureebulle ?>, 
@@ -139,8 +140,11 @@ class Tooltipck_Front extends Tooltipck {
 		$bordercolor = $this->get_option('bordercolor');
 		$borderwidth = $this->get_option('borderwidth') . 'px';
 		$shadowinset = $this->get_option('shadowinset');
-
 		$shadowinset = $shadowinset ? 'inset ' : '';
+
+		$background = ( $this->get_option('bgimage') ) ? 'background-image: url("' . get_site_url() . '/' . $this->get_option('bgimage') . '")' . ';' : '';
+		$background .= ( $this->get_option('bgimage') AND $this->get_option('bgimagerepeat') ) ? 'background-repeat: ' . $this->get_option('bgimagerepeat') . ';' : '';
+		$background .= ( $this->get_option('bgimage') AND ($this->get_option('bgpositionx') || $this->get_option('bgpositiony')) ) ? 'background-position: ' . $this->get_option('bgpositionx') . ' ' . $this->get_option('bgpositiony') . ';' : '';
 
 		$css = '.tooltipck_tooltip {'
 				. 'padding: ' . $padding . ';'
@@ -148,9 +152,10 @@ class Tooltipck_Front extends Tooltipck {
 				. '-moz-border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
 				. '-webkit-border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
 				. 'border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
-				. 'background: ' . $bgcolor1 . ';'
-				. 'background: -moz-linear-gradient(top, ' . $bgcolor1 . ', ' . $bgcolor2 . ');'
-				. 'background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(' . $bgcolor1 . '), to(' . $bgcolor2 . '));'
+				. 'background-image: ' . $bgcolor1 . ';'
+				. 'background-image: -moz-linear-gradient(top, ' . $bgcolor1 . ', ' . $bgcolor2 . ');'
+				. 'background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(' . $bgcolor1 . '), to(' . $bgcolor2 . '));'
+				. $background
 				. 'color: ' . $textcolor . ';'
 				. 'margin: ' . $tipoffsety . ' 0 0 ' . $tipoffsetx . ';'
 				. '-moz-box-shadow: ' . $shadowinset . $shadowoffsetx . ' ' . $shadowoffsety . ' ' . $shadowblur . ' ' . $shadowspread . ' ' . $shadowcolor . ';'
