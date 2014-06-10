@@ -13,6 +13,7 @@
 			dureeIn: 0,
 			dureeBulle: 500,
 			// largeur : '150',
+			ismobile: 0,
 			opacite: 0.8
 			// offsetx: '0',
 			// offsety: '0'
@@ -25,12 +26,22 @@
 			tooltip = $(tooltip);
 			tooltip.tip = $('> .tooltipck_tooltip', tooltip);
 			getTooltipParams(tooltip);
-			tooltip.mouseover(function() {
-				showTip(tooltip);
-			});
-			tooltip.mouseleave(function() {
-				hideTip(tooltip);
-			});
+			if ( options.ismobile === 1 ) {
+				tooltip.click(function() {
+					if ( tooltip.data('status') != 'open' ) {
+						showTip(tooltip);
+					} else {
+						hideTip(tooltip);
+					}
+				});
+			} else {
+				tooltip.mouseover(function() {
+					showTip(tooltip);
+				});
+				tooltip.mouseleave(function() {
+					hideTip(tooltip);
+				});
+			}
 
 			function showTip(el) {
 				clearTimeout(el.timeout);
@@ -49,6 +60,7 @@
 
 			function openTip(el) {
 				tip = $(el.tip);
+				el.data('status', 'open');
 				if (el.data('status') == 'opened')
 					return;
 				tip.stop(true, true);
@@ -61,6 +73,7 @@
 
 			function closeTip(el) {
 				tip = $(el.tip);
+				el.data('status', 'close');
 				tip.stop(true, true);
 				tip.hide(0, options.fxtransition, {
 					complete: function() {

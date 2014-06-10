@@ -31,6 +31,11 @@ class Tooltipck_Front extends Tooltipck {
 	}
 
 	function load_assets() {
+		// mobile detection
+		if (!class_exists('Mobile_Detect')) {
+			require_once dirname(__FILE__) . '/Mobile_Detect.php';
+		}
+		$detect = new Mobile_Detect;
 		// $this->load_assets_files();
 		
 		$fxduration = $this->get_option('fxduration');
@@ -44,7 +49,8 @@ class Tooltipck_Front extends Tooltipck {
 				fxtransition: '<?php echo $fxtransition?>', 
 				fxduration: <?php echo $fxduration ?>, 
 				dureebulle: <?php echo $dureebulle ?>, 
-				opacite: <?php echo $opacity ?> 
+				opacite: <?php echo $opacity ?>,
+				ismobile: <?php echo ($detect->isMobile() ? '1' : '0') ?>
 			});
 		});
 		</script>
