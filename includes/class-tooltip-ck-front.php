@@ -74,7 +74,7 @@ class Tooltipck_Front extends Tooltipck {
 			return $content;
 		
 		$regex = "#{tooltip}(.*?){end-tooltip}#s"; // search mask
-		$content = preg_replace_callback($regex, 'self::create_tooltip', $content);
+		$content = preg_replace_callback($regex, array('Tooltipck_Front', 'create_tooltip'), $content);
 
 		return $content;
 	}
@@ -158,7 +158,7 @@ class Tooltipck_Front extends Tooltipck {
 				. '-moz-border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
 				. '-webkit-border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
 				. 'border-radius: ' . $roundedcornerstl . ' ' . $roundedcornerstr . ' ' . $roundedcornersbr . ' ' . $roundedcornersbl . ';'
-				. 'background-image: ' . $bgcolor1 . ';'
+				. 'background-color: ' . $bgcolor1 . ';'
 				. 'background-image: -moz-linear-gradient(top, ' . $bgcolor1 . ', ' . $bgcolor2 . ');'
 				. 'background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(' . $bgcolor1 . '), to(' . $bgcolor2 . '));'
 				. $background
