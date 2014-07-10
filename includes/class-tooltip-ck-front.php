@@ -16,12 +16,12 @@ class Tooltipck_Front extends Tooltipck {
 
 		add_action('wp_head', array( $this, 'load_assets'));
 		add_action('init', array( $this, 'load_assets_files'));
-		add_filter('the_content',  array( $this, 'search_key'));
+		add_action('template_redirect',array( $this, 'do_my_ob_start') );
 	}
 
-	// function init() {
-		
-	// }
+	function do_my_ob_start() {
+		ob_start(array($this, 'search_key') );
+	}
 
 	function load_assets_files() {
 		wp_enqueue_script('jquery');

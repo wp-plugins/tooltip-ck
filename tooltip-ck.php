@@ -3,7 +3,7 @@
  * Plugin Name: Tooltip CK
  * Plugin URI: http://www.wp-pluginsck.com/en/wordpress-plugins/tooltip-ck
  * Description: Tooltip CK allows you to put some nice tooltip effects into your content. Example : {tooltip}Text to hover{end-text}a friendly little boy{end-tooltip}
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Cédric KEIFLIN
  * Author URI: http://www.wp-pluginsck.com/
  * License: GPL2
