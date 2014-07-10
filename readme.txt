@@ -32,7 +32,7 @@ Tooltip CK allows you to put some nice tooltip effects into your content.
 == Changelog ==
 
 = 1.0.6 =
-* add compatibility into the widget and anywher in the page
+* add compatibility into the widget and anywhere in the page
 
 = 1.0.5 =
 * fix an issue on background color
