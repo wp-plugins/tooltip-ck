@@ -7,20 +7,19 @@
  * Author URI: http://www.wordpressck.com
  * License: GPL2
  */
-
 span.infotip {
-	z-index: 5000;
-	text-decoration: underline;
+	z-index: 50000;
 }
 
 span.infotip span.tooltipck_tooltip {
 	position: absolute;
+	/*left:-999em;*/
 	z-index : 60000;
     display : none;
 }
 
 span.infotip:hover span.tooltipck_tooltip {
-
+	/*left: auto;*/
 }
 
 span.infotip span.tooltipck_inner {

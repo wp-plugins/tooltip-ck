@@ -25,10 +25,17 @@
 		$('.infotip').each(function(i, tooltip) {
 			tooltip = $(tooltip);
 			tooltip.tip = $('> .tooltipck_tooltip', tooltip);
+			tooltip.width = tooltip.tip.width();
+			tooltip.height = tooltip.tip.height();
+			tooltip.tip.css({
+					'opacity': '0',
+					'width': '0',
+					'height': '0',
+				});
 			getTooltipParams(tooltip);
-			if ( options.ismobile === 1 ) {
+			if (options.ismobile === 1) {
 				tooltip.click(function() {
-					if ( tooltip.data('status') != 'open' ) {
+					if (tooltip.data('status') != 'open') {
 						showTip(tooltip);
 					} else {
 						hideTip(tooltip);
@@ -63,10 +70,15 @@
 				el.data('status', 'open');
 				if (el.data('status') == 'opened')
 					return;
-				tip.stop(true, true);
-				tip.show(parseInt(tooltip.fxduration), options.fxtransition, {
+				tip.animate({
+					'opacity' : options.opacite,
+					'height' : el.height,
+					'width' : el.width,
+					'display' : 'inline-block'
+					}, parseInt(tooltip.fxduration), options.fxtransition, {
 					complete: function() {
 						el.data('status', 'opened');
+						tip.css('height' ,'auto');
 					}
 				});
 			}
@@ -75,11 +87,13 @@
 				tip = $(el.tip);
 				el.data('status', 'close');
 				tip.stop(true, true);
-				tip.hide(0, options.fxtransition, {
-					complete: function() {
-						el.data('status', 'closed');
-					}
+				tip.css({
+					'opacity': '0',
+					'width': '0',
+					'height': '0',
+					'display' : 'none'
 				});
+				el.data('status', 'closed');
 			}
 
 			function getTooltipParams(tooltip) {
@@ -101,7 +115,7 @@
 					}
 
 					$(tooltip.tip).css({
-						'opacity': options.opacite,
+						// 'opacity': options.opacite,
 						'marginTop': tooltip.offsety,
 						'marginLeft': tooltip.offsetx
 					});
